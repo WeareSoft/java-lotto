@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.lotto.Lotto;
 import domain.seller.LottoSeller;
+import domain.wallet.Wallet;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +22,8 @@ class LottoSellerTest {
     @ParameterizedTest(name = "LottoSeller에게 돈{arguments}을 주고 Lotto를 살 수 있다")
     @ValueSource(longs = {1000, 3000, 5000})
     void buyLottoTest(long enoughMoney) {
-        List<Lotto> lottos = seller.buyLotto(enoughMoney);
+        Wallet wallet = new Wallet(enoughMoney);
+        List<Lotto> lottos = seller.buyLotto(wallet);
 
         assertThat(lottos).isNotEmpty();
     }
@@ -29,7 +31,8 @@ class LottoSellerTest {
     @ParameterizedTest(name = "LottoSeller에게 돈 {arguments}으로 Lotto를 살 수 없다")
     @ValueSource(longs = {-1, 0})
     void emptyMoneyBuyLottoTest(long notEnoughMoney) {
-        List<Lotto> lottos = seller.buyLotto(notEnoughMoney);
+        Wallet notEnoughWallet = new Wallet(notEnoughMoney);
+        List<Lotto> lottos = seller.buyLotto(notEnoughWallet);
 
         assertThat(lottos).isEmpty();
     }
