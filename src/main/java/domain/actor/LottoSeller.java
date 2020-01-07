@@ -1,4 +1,4 @@
-package domain.seller;
+package domain.actor;
 
 import domain.lotto.Lotto;
 import domain.wallet.Wallet;

@@ -1,4 +1,4 @@
-package domain.seller;
+package domain.actor;
 
 import static java.util.Objects.isNull;
 
