@@ -1,9 +1,8 @@
-package domain;
+package domain.seller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.lotto.Lotto;
-import domain.seller.LottoSeller;
 import domain.wallet.Wallet;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
