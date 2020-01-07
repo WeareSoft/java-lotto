@@ -12,7 +12,6 @@ public class LottoSeller {
         if (wallet.isEmptyWallet()) {
             return Collections.emptyList();
         }
- 
         return Arrays.asList(new Lotto());
     }
 }
