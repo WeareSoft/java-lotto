@@ -12,4 +12,8 @@ public class Wallet {
     public boolean isEmptyWallet() {
         return money <= 0L;
     }
+
+    public long getMoney() {
+        return money;
+    }
 }

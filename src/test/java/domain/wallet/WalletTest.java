@@ -2,6 +2,8 @@ package domain.wallet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,5 +15,16 @@ class WalletTest {
         Wallet wallet = new Wallet(notEnoughMoney);
 
         assertThat(wallet.isEmptyWallet()).isTrue();
+    }
+
+    @Test
+    @DisplayName("지갑에게 돈이 얼마나 있는지 정보를 얻을 수 있다")
+    void test() {
+        long money = 3000;
+        Wallet wallet = new Wallet(money);
+
+        long holdingMoney = wallet.getMoney();
+
+        assertThat(holdingMoney).isEqualTo(money);
     }
 }
