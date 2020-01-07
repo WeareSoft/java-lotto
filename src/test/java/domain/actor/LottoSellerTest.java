@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import domain.lotto.Lotto;
+import domain.lotto.LottoBuilder;
 import domain.wallet.Wallet;
 import java.security.InvalidParameterException;
 import java.util.List;
@@ -17,7 +18,7 @@ class LottoSellerTest {
 
     @BeforeEach
     void setUp() {
-        this.seller = new LottoSeller();
+        this.seller = new LottoSeller(new LottoBuilder());
     }
 
     @ParameterizedTest(name = "LottoSeller에게 돈{arguments}을 주고 Lotto를 살 수 있다")

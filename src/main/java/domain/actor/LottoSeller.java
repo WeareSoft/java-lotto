@@ -1,27 +1,28 @@
 package domain.actor;
 
 import domain.lotto.Lotto;
+import domain.lotto.LottoBuilder;
 import domain.wallet.Wallet;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoSeller {
 
+    private LottoBuilder builder;
     private long lottoPrice;
+
+    public LottoSeller(LottoBuilder builder) {
+        this.builder = builder;
+    }
 
     public List<Lotto> buyLotto(Wallet wallet) {
         if (wallet.isEmptyWallet()) {
             return Collections.emptyList();
         }
 
-        List<Lotto> buyLottoes = new ArrayList<>();
-        for (int i = 0; i < getBuyLottoSize(wallet); i++) {
-            buyLottoes.add(new Lotto());
-        }
-
-        return buyLottoes;
+        return builder.size(getBuyLottoSize(wallet))
+                .build();
     }
 
     public void setLottoPrice(long settingPrice) {

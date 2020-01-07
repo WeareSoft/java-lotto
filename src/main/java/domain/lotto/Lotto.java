@@ -1,5 +1,5 @@
 package domain.lotto;
 
-public class Lotto {
+public interface Lotto {
 
 }
