@@ -3,6 +3,8 @@ package domain.actor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.actor.impl.LottoChecker;
+import domain.actor.impl.LottoPrizer;
 import domain.lotto.Lotto;
 import fixture.LottoParameterExtension;
 import fixture.LottoParameterExtension.MockLotto;
@@ -21,7 +23,7 @@ class LottoCheckerTest {
 
     @BeforeEach
     void setUp() {
-        checker = new LottoChecker();
+        checker = new LottoChecker(new LottoPrizer());
     }
 
     @Test

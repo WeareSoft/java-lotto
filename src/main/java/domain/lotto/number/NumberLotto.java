@@ -15,6 +15,14 @@ public class NumberLotto implements Lotto {
     }
 
     @Override
+    public long getMatching(Lotto target) {
+        NumberLotto lotto = (NumberLotto) target;
+        return lotto.values.stream()
+                .filter(value -> values.contains(value))
+                .count();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

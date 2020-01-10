@@ -3,8 +3,9 @@ package domain.actor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import domain.actor.impl.LottoBuilder;
+import domain.actor.impl.LottoSeller;
 import domain.lotto.Lotto;
-import domain.lotto.LottoBuilder;
 import domain.lotto.strategy.LottoValueBuildStrategy;
 import domain.wallet.Wallet;
 import fixture.LottoParameterExtension;

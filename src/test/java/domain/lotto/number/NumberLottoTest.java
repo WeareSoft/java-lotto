@@ -2,8 +2,8 @@ package domain.lotto.number;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.actor.impl.LottoBuilder;
 import domain.lotto.Lotto;
-import domain.lotto.LottoBuilder;
 import domain.lotto.LottoValueable;
 import domain.lotto.strategy.ManualStrategy;
 import java.util.List;
@@ -40,13 +40,22 @@ class NumberLottoTest {
         assertThat(lotto).isNotEqualTo(compareLotto);
     }
 
+    @Test
+    @DisplayName("매칭되는 요소의 개수를 얻을 수 있다")
+    public void getMatchingCount() {
+        Lotto lotto = generateLotto(1, 6);
+        Lotto compareLotto = generateLotto(1, 6);
+
+        assertThat(lotto.getMatching(compareLotto)).isEqualTo(6);
+    }
+
 
     private Lotto generateLotto(int start, int end) {
         List<LottoValueable> values = IntStream.rangeClosed(start, end)
                 .mapToObj(NumberLottoValue::new)
                 .collect(Collectors.toList());
 
-        List<Lotto> lottos = builder.size(1).build(new ManualStrategy(values));
+        List<Lotto> lottos = builder.build(1, new ManualStrategy(values));
 
         assertThat(lottos.size()).isEqualTo(1);
 

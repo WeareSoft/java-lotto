@@ -2,6 +2,7 @@ package domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.actor.impl.LottoBuilder;
 import domain.lotto.strategy.LottoValueBuildStrategy;
 import fixture.StrategryParameterExtension;
 import fixture.StrategryParameterExtension.LottoBuildStrategy;
@@ -28,7 +29,7 @@ class LottoBuilderTest {
     public void test(@LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy lottoValueBuildStrategy) {
         int size = 7;
 
-        List<Lotto> lottos = builder.size(size).build(lottoValueBuildStrategy);
+        List<Lotto> lottos = builder.build(size, lottoValueBuildStrategy);
 
         assertThat(lottos.size()).isEqualTo(size);
     }
@@ -38,7 +39,7 @@ class LottoBuilderTest {
     public void test2(@LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy lottoValueBuildStrategy) {
         int size = 6;
 
-        List<Lotto> lottos = builder.size(size).build(lottoValueBuildStrategy);
+        List<Lotto> lottos = builder.build(size, lottoValueBuildStrategy);
 
         assertThat(lottos).doesNotHaveDuplicates();
     }

@@ -1,7 +1,7 @@
 package fixture;
 
+import domain.actor.impl.LottoBuilder;
 import domain.lotto.Lotto;
-import domain.lotto.LottoBuilder;
 import domain.lotto.strategy.RandomStrategy;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -40,9 +40,9 @@ public class LottoParameterExtension implements ParameterResolver {
         Class<?> type = parameterContext.getParameter().getType();
         if (type == List.class && parameterContext.isAnnotated(MockLottoList.class)) {
             Optional<MockLottoList> annotation = parameterContext.findAnnotation(MockLottoList.class);
-            return new LottoBuilder().size(annotation.get().size()).build(new RandomStrategy());
+            return new LottoBuilder().build(annotation.get().size(), new RandomStrategy());
         } else if (type == Lotto.class && parameterContext.isAnnotated(MockLotto.class)) {
-            return new LottoBuilder().size(1).build(new RandomStrategy()).get(0);
+            return new LottoBuilder().build(1, new RandomStrategy()).get(0);
         }
 
         throw new ParameterResolutionException("Not Supported Annotation in Lotto Extension");

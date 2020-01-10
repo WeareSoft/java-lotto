@@ -18,8 +18,8 @@ public class RandomStrategy implements LottoValueBuildStrategy {
         Collections.shuffle(values);
 
         return values.stream()
-                .limit(6)
-                .map(NumberLottoValue::new)
+                .limit(6) // todo : remove it
+                .map(NumberLottoValue::new) // todo : remove it
                 .sorted()
                 .collect(Collectors.toList());
     }
