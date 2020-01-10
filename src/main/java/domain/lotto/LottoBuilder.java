@@ -1,5 +1,6 @@
 package domain.lotto;
 
+import domain.lotto.number.NumberLotto;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
