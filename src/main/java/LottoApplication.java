@@ -7,7 +7,7 @@ import domain.actor.impl.LottoChecker;
 import domain.actor.impl.LottoPrizer;
 import domain.actor.impl.LottoSeller;
 import domain.lotto.Lotto;
-import domain.lotto.number.NumberLottoValue;
+import domain.lotto.number.LottoNumber;
 import domain.lotto.prize.LottoPrize;
 import domain.lotto.prize.Prizeable;
 import domain.lotto.strategy.ManualStrategy;
@@ -40,7 +40,7 @@ public class LottoApplication {
         List<Long> winningLottoNumber = AdminReader.getWinningLotto();
 
         // logic
-        Lotto winningLotto = builder.build(1, new ManualStrategy(winningLottoNumber.stream().map(NumberLottoValue::new).collect(Collectors.toList()))).get(0);
+        Lotto winningLotto = builder.build(1, new ManualStrategy(winningLottoNumber.stream().map(LottoNumber::new).collect(Collectors.toList()))).get(0);
         LottoPrizeable prizer = new LottoPrizer();
         List<Prizeable> prizeables = new ArrayList<>();
         prizeables.add(new LottoPrize(3, 5000));

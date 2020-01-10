@@ -4,14 +4,14 @@ import domain.lotto.LottoValueable;
 import java.security.InvalidParameterException;
 import java.util.Objects;
 
-public class NumberLottoValue implements LottoValueable {
+public class LottoNumber implements LottoValueable {
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
 
     private long value;
 
-    public NumberLottoValue(long value) {
+    public LottoNumber(long value) {
         if (isSupportLottoValue(value)) {
             throw new InvalidParameterException("invalid lotto value");
         }
@@ -31,7 +31,7 @@ public class NumberLottoValue implements LottoValueable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NumberLottoValue that = (NumberLottoValue) o;
+        LottoNumber that = (LottoNumber) o;
         return value == that.value;
     }
 
@@ -47,7 +47,7 @@ public class NumberLottoValue implements LottoValueable {
 
     @Override
     public int compareTo(LottoValueable targetValue) {
-        NumberLottoValue target = (NumberLottoValue) targetValue;
+        LottoNumber target = (LottoNumber) targetValue;
         if (target.value > this.value) {
             return -1;
         } else if (target.value < this.value) {

@@ -52,7 +52,7 @@ class NumberLottoTest {
 
     private Lotto generateLotto(int start, int end) {
         List<LottoValueable> values = IntStream.rangeClosed(start, end)
-                .mapToObj(NumberLottoValue::new)
+                .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
 
         List<Lotto> lottos = builder.build(1, new ManualStrategy(values));

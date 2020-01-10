@@ -1,7 +1,7 @@
 package domain.lotto.strategy;
 
 import domain.lotto.LottoValueable;
-import domain.lotto.number.NumberLottoValue;
+import domain.lotto.number.LottoNumber;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ public class RandomStrategy implements LottoValueBuildStrategy {
 
     @Override
     public List<LottoValueable> buildLottoVaules() {
-        List<Integer> values = IntStream.rangeClosed(NumberLottoValue.MIN_VALUE, NumberLottoValue.MAX_VALUE)
+        List<Integer> values = IntStream.rangeClosed(LottoNumber.MIN_VALUE, LottoNumber.MAX_VALUE)
                 .boxed()
                 .collect(Collectors.toList());
 
@@ -19,7 +19,7 @@ public class RandomStrategy implements LottoValueBuildStrategy {
 
         return values.stream()
                 .limit(6) // todo : remove it
-                .map(NumberLottoValue::new) // todo : remove it
+                .map(LottoNumber::new) // todo : remove it
                 .sorted()
                 .collect(Collectors.toList());
     }

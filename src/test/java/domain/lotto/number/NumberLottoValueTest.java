@@ -12,9 +12,9 @@ class NumberLottoValueTest {
     @Test
     @DisplayName("로또 번호는 최대값을 넘어서면 에러를 반환한다")
     public void whenOverLottoMaxValueReturnError() {
-        int overLottoMaxValue = NumberLottoValue.MAX_VALUE + 1;
+        int overLottoMaxValue = LottoNumber.MAX_VALUE + 1;
 
-        Exception exception = assertThrows(InvalidParameterException.class, () -> new NumberLottoValue(overLottoMaxValue));
+        Exception exception = assertThrows(InvalidParameterException.class, () -> new LottoNumber(overLottoMaxValue));
 
         assertThat(exception.getMessage()).isEqualTo("invalid lotto value");
     }
@@ -22,9 +22,9 @@ class NumberLottoValueTest {
     @Test
     @DisplayName("로또 번호는 최소값보다 작으면 에러를 반환한다")
     public void whenLessLottoMinValueReturnError() {
-        int lessLottoMinValue = NumberLottoValue.MIN_VALUE - 1;
+        int lessLottoMinValue = LottoNumber.MIN_VALUE - 1;
 
-        Exception exception = assertThrows(InvalidParameterException.class, () -> new NumberLottoValue(lessLottoMinValue));
+        Exception exception = assertThrows(InvalidParameterException.class, () -> new LottoNumber(lessLottoMinValue));
 
         assertThat(exception.getMessage()).isEqualTo("invalid lotto value");
     }
