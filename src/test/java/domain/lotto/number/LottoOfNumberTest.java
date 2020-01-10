@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import domain.actor.impl.LottoBuilder;
 import domain.lotto.Lotto;
 import domain.lotto.LottoValueable;
-import domain.lotto.strategy.ManualStrategy;
+import domain.lotto.strategy.ManualNumberStrategy;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NumberLottoTest {
+class LottoOfNumberTest {
 
     private LottoBuilder builder;
 
@@ -55,7 +55,7 @@ class NumberLottoTest {
                 .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
 
-        List<Lotto> lottos = builder.build(1, new ManualStrategy(values));
+        List<Lotto> lottos = builder.build(1, new ManualNumberStrategy(values));
 
         assertThat(lottos.size()).isEqualTo(1);
 

@@ -4,11 +4,11 @@ import domain.lotto.LottoValueable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ManualStrategy implements LottoValueBuildStrategy {
+public class ManualNumberStrategy implements LottoValueBuildStrategy {
 
     List<LottoValueable> values;
 
-    public ManualStrategy(List<LottoValueable> list) {
+    public ManualNumberStrategy(List<LottoValueable> list) {
         this.values = list;
     }
 

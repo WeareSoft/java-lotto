@@ -22,6 +22,6 @@ public class LottoResultWriter {
             totalPrize += prizeinfo.getPrize() * count;
         }
 
-        System.out.println(String.format(TOTAL_FORMAT, (double) (totalPrize / money) * 100));
+        System.out.println(String.format(TOTAL_FORMAT, (totalPrize / (double) money) * 100));
     }
 }

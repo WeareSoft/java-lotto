@@ -7,7 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomStrategy implements LottoValueBuildStrategy {
+public class RandomNumberStrategy implements LottoValueBuildStrategy {
+
+    private int size;
+
+    public RandomNumberStrategy(int size) {
+        this.size = size;
+    }
 
     @Override
     public List<LottoValueable> buildLottoVaules() {
@@ -18,8 +24,8 @@ public class RandomStrategy implements LottoValueBuildStrategy {
         Collections.shuffle(values);
 
         return values.stream()
-                .limit(6) // todo : remove it
-                .map(LottoNumber::new) // todo : remove it
+                .limit(size)
+                .map(LottoNumber::new)
                 .sorted()
                 .collect(Collectors.toList());
     }

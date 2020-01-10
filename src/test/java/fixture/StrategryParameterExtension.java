@@ -1,12 +1,18 @@
 package fixture;
 
 import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.toList;
 
-import domain.lotto.strategy.RandomStrategy;
+import domain.lotto.LottoValueable;
+import domain.lotto.number.LottoNumber;
+import domain.lotto.strategy.ManualNumberStrategy;
+import domain.lotto.strategy.RandomNumberStrategy;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
@@ -15,6 +21,7 @@ import org.junit.jupiter.api.extension.ParameterResolver;
 public class StrategryParameterExtension implements ParameterResolver {
 
     public enum StrategyType {
+        MANUAL,
         RANDOM,
         NONE;
     }
@@ -22,6 +29,10 @@ public class StrategryParameterExtension implements ParameterResolver {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.PARAMETER)
     public @interface LottoBuildStrategy {
+
+        int size() default 0;
+
+        int[] item() default {};
 
         StrategyType type() default StrategyType.NONE;
     }
@@ -39,7 +50,11 @@ public class StrategryParameterExtension implements ParameterResolver {
         }
 
         if (!isNull(strategy) && strategy.type() == StrategyType.RANDOM) {
-            return new RandomStrategy();
+            int size = strategy.size();
+            return new RandomNumberStrategy(size);
+        } else if (!isNull(strategy) && strategy.type() == StrategyType.MANUAL) {
+            List<LottoValueable> items = Arrays.stream(strategy.item()).mapToObj(LottoNumber::new).collect(toList());
+            return new ManualNumberStrategy(items);
         }
 
         throw new ParameterResolutionException("Not Supported Annotation in Lotto Extension");

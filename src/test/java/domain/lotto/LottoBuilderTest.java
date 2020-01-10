@@ -26,7 +26,7 @@ class LottoBuilderTest {
 
     @Test
     @DisplayName("로또 빌더에게 로또를 만들 수 있다")
-    public void test(@LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy lottoValueBuildStrategy) {
+    public void test(@LottoBuildStrategy(type = StrategyType.RANDOM, size = 6) LottoValueBuildStrategy lottoValueBuildStrategy) {
         int size = 7;
 
         List<Lotto> lottos = builder.build(size, lottoValueBuildStrategy);
@@ -36,7 +36,7 @@ class LottoBuilderTest {
 
     @RepeatedTest(100)
     @DisplayName("로또 빌더에게 랜덤으로 로또를 만드는 경우 같은 번호의 로또가 발생하지 않는다")
-    public void test2(@LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy lottoValueBuildStrategy) {
+    public void test2(@LottoBuildStrategy(type = StrategyType.RANDOM, size = 6) LottoValueBuildStrategy lottoValueBuildStrategy) {
         int size = 6;
 
         List<Lotto> lottos = builder.build(size, lottoValueBuildStrategy);

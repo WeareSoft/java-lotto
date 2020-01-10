@@ -7,7 +7,7 @@ import java.security.InvalidParameterException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class NumberLottoValueTest {
+class LottoNumberTest {
 
     @Test
     @DisplayName("로또 번호는 최대값을 넘어서면 에러를 반환한다")

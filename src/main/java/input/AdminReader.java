@@ -12,6 +12,7 @@ public class AdminReader {
 //        String winningLotto = scanner.nextLine();
         String winningLotto = "1, 2, 3, 4, 5, 6";
         System.out.println(winningLotto);
+        System.out.println();
         return Arrays.stream(winningLotto.split(", "))
                 .map(Long::new)
                 .collect(Collectors.toList());

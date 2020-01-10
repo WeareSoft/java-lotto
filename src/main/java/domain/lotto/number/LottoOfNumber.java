@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class NumberLotto implements Lotto {
+public class LottoOfNumber implements Lotto {
 
     List<LottoValueable> values;
 
-    public NumberLotto(List<LottoValueable> items) {
+    public LottoOfNumber(List<LottoValueable> items) {
         this.values = items;
     }
 
     @Override
     public long getMatching(Lotto target) {
-        NumberLotto lotto = (NumberLotto) target;
+        LottoOfNumber lotto = (LottoOfNumber) target;
         return lotto.values.stream()
                 .filter(value -> values.contains(value))
                 .count();
@@ -32,7 +32,7 @@ public class NumberLotto implements Lotto {
             return false;
         }
 
-        NumberLotto that = (NumberLotto) o;
+        LottoOfNumber that = (LottoOfNumber) o;
         return Objects.equals(values, that.values);
     }
 

@@ -8,6 +8,7 @@ public class SellerReader {
 //        int size = scanner.nextInt();
         int size = 10000;
         System.out.println(String.format("%d개를 구매했습니다.", size));
+        System.out.println();
         return size;
     }
 }

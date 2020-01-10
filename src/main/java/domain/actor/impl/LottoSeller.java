@@ -4,7 +4,7 @@ import domain.actor.LottoBuildable;
 import domain.actor.LottoSellable;
 import domain.lotto.Lotto;
 import domain.lotto.strategy.LottoValueBuildStrategy;
-import domain.wallet.Wallet;
+import domain.wallet.Payable;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.List;
@@ -20,12 +20,12 @@ public class LottoSeller implements LottoSellable {
     }
 
     @Override
-    public List<Lotto> buyLotto(Wallet wallet, LottoValueBuildStrategy strategy) {
-        if (wallet.isEmptyWallet()) {
+    public List<Lotto> buyLotto(Payable payment, LottoValueBuildStrategy strategy) {
+        if (payment.isEmpty()) {
             return Collections.emptyList();
         }
 
-        return builder.build(getBuyLottoSize(wallet), strategy);
+        return builder.build(getBuyLottoSize(payment), strategy);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class LottoSeller implements LottoSellable {
         this.lottoPrice = settingPrice;
     }
 
-    private int getBuyLottoSize(Wallet wallet) {
+    private int getBuyLottoSize(Payable wallet) {
         return (int) (wallet.getMoney() / lottoPrice);
     }
 }

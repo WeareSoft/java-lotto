@@ -14,7 +14,7 @@ class WalletTest {
     void isEmptyTest(long notEnoughMoney) {
         Wallet wallet = new Wallet(notEnoughMoney);
 
-        assertThat(wallet.isEmptyWallet()).isTrue();
+        assertThat(wallet.isEmpty()).isTrue();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package domain.wallet;
 
-public class Wallet {
+public class Wallet implements Payable {
 
     private long money;
 
@@ -8,11 +8,12 @@ public class Wallet {
         this.money = money;
     }
 
-
-    public boolean isEmptyWallet() {
+    @Override
+    public boolean isEmpty() {
         return money <= 0L;
     }
 
+    @Override
     public long getMoney() {
         return money;
     }

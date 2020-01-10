@@ -1,6 +1,7 @@
 package domain.actor.impl;
 
 import domain.actor.LottoPrizeable;
+import domain.lotto.prize.LottoPrize;
 import domain.lotto.prize.Prizeable;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,10 @@ public class LottoPrizer implements LottoPrizeable {
 
     public LottoPrizer() {
         this.prizeableMap = new TreeMap<>();
+        prizeableMap.put(3L, new LottoPrize(3, 5000));
+        prizeableMap.put(4L, new LottoPrize(4, 50000));
+        prizeableMap.put(5L, new LottoPrize(5, 1500000));
+        prizeableMap.put(6L, new LottoPrize(6, 2000000000));
     }
 
     @Override

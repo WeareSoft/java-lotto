@@ -11,5 +11,6 @@ public class LottoWriter {
         for (Lotto lotto : lottos) {
             System.out.println(String.format(FORMAT, lotto.toString()));
         }
+        System.out.println();
     }
 }
