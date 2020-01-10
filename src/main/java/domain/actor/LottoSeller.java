@@ -8,15 +8,17 @@ import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoSeller {
+public class LottoSeller implements LottoSellable {
 
     private LottoBuilder builder;
     private long lottoPrice;
 
-    public LottoSeller(LottoBuilder builder) {
+    public LottoSeller(LottoBuilder builder, long price) {
+        this.lottoPrice = price;
         this.builder = builder;
     }
 
+    @Override
     public List<Lotto> buyLotto(Wallet wallet, LottoValueBuildStrategy strategy) {
         if (wallet.isEmptyWallet()) {
             return Collections.emptyList();
@@ -26,6 +28,7 @@ public class LottoSeller {
                 .build(strategy);
     }
 
+    @Override
     public void setLottoPrice(long settingPrice) {
         if (settingPrice <= 0) {
             throw new InvalidParameterException("invalid lotto price");

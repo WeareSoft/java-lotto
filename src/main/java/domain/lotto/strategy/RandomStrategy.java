@@ -20,6 +20,7 @@ public class RandomStrategy implements LottoValueBuildStrategy {
         return values.stream()
                 .limit(6)
                 .map(NumberLottoValue::new)
+                .sorted()
                 .collect(Collectors.toList());
     }
 }

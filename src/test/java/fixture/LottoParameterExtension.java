@@ -37,10 +37,11 @@ public class LottoParameterExtension implements ParameterResolver {
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        if (parameterContext.getParameter().getType() == List.class && parameterContext.isAnnotated(MockLottoList.class)) {
+        Class<?> type = parameterContext.getParameter().getType();
+        if (type == List.class && parameterContext.isAnnotated(MockLottoList.class)) {
             Optional<MockLottoList> annotation = parameterContext.findAnnotation(MockLottoList.class);
             return new LottoBuilder().size(annotation.get().size()).build(new RandomStrategy());
-        } else if (parameterContext.getParameter().getType() == Lotto.class && parameterContext.isAnnotated(MockLotto.class)) {
+        } else if (type == Lotto.class && parameterContext.isAnnotated(MockLotto.class)) {
             return new LottoBuilder().size(1).build(new RandomStrategy()).get(0);
         }
 

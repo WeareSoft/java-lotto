@@ -2,6 +2,7 @@ package domain.lotto.strategy;
 
 import domain.lotto.LottoValueable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ManualStrategy implements LottoValueBuildStrategy {
 
@@ -13,6 +14,8 @@ public class ManualStrategy implements LottoValueBuildStrategy {
 
     @Override
     public List<LottoValueable> buildLottoVaules() {
-        return values;
+        return values.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

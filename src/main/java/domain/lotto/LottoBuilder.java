@@ -16,10 +16,11 @@ public class LottoBuilder {
     }
 
     public List<Lotto> build(LottoValueBuildStrategy strategy) {
-        List<LottoValueable> values = strategy.buildLottoVaules();
-
         return IntStream.range(0, size)
-                .mapToObj((value) -> new NumberLotto(values))
+                .mapToObj((value) -> {
+                    List<LottoValueable> values = strategy.buildLottoVaules();
+                    return new NumberLotto(values);
+                })
                 .collect(Collectors.toList());
     }
 }

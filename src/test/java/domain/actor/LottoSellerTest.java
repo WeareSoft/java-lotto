@@ -25,7 +25,7 @@ class LottoSellerTest {
 
     @BeforeEach
     void setUp() {
-        this.seller = new LottoSeller(new LottoBuilder());
+        this.seller = new LottoSeller(new LottoBuilder(), 1000);
     }
 
     @ParameterizedTest(name = "LottoSeller에게 돈{arguments}을 주고 Lotto를 살 수 있다")

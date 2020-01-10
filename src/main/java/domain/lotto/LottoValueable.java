@@ -1,5 +1,5 @@
 package domain.lotto;
 
-public interface LottoValueable {
+public interface LottoValueable extends Comparable<LottoValueable> {
 
 }

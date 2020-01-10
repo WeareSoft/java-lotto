@@ -44,4 +44,16 @@ public class NumberLottoValue implements LottoValueable {
     public String toString() {
         return String.valueOf(value);
     }
+
+    @Override
+    public int compareTo(LottoValueable targetValue) {
+        NumberLottoValue target = (NumberLottoValue) targetValue;
+        if (target.value > this.value) {
+            return -1;
+        } else if (target.value < this.value) {
+            return 1;
+        }
+
+        return 0;
+    }
 }

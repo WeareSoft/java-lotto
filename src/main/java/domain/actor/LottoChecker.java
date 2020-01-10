@@ -4,8 +4,9 @@ import static java.util.Objects.isNull;
 
 import domain.lotto.Lotto;
 import java.security.InvalidParameterException;
+import java.util.List;
 
-public class LottoChecker {
+public class LottoChecker implements LottoMatchable {
 
     private Lotto winningLotto;
 
@@ -19,5 +20,10 @@ public class LottoChecker {
 
     public boolean isWinningLotto(Lotto lotto) {
         return winningLotto.equals(lotto);
+    }
+
+    @Override
+    public LottoMatchingInfo getLottoMatchingInfo(List<Lotto> lottos) {
+        return null;
     }
 }

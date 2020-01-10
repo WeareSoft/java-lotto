@@ -24,6 +24,8 @@
 - 할인 / 세일 등등?
 - List 대신 Set?
     - 중복에 대한 요구사항은 없나?
+    - List<Lotto> 추상화
 - builder에 size를 결정하지 않는 경우
 - Number Lotto 크기가 제한된 크기보다 이상으로 넣는 경우
 - toString하면 디버깅하기 매우 편함
+- 순서대로 표기할것
