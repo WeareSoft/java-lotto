@@ -32,6 +32,14 @@ class LottoCheckerTest {
         assertThat(checker.isWinningLotto(winningLotto)).isTrue();
     }
 
+    @ParameterizedTest(name = "잘못된 로또[{arguments}]로 Winning인지 검증하면 false를 반환한다")
+    @NullSource
+    void whenInvalidParameterisWinningLottoReturnFalse(Lotto invalidLotto, @MockLotto Lotto winningLotto) {
+        checker.settingWinningLotto(winningLotto);
+
+        assertThat(checker.isWinningLotto(invalidLotto)).isFalse();
+    }
+
     @ParameterizedTest(name = "LottoCheck에게 잘못된 당첨 로또[{arguments}]를 입력하면 에러를 반환한다")
     @NullSource
     void whenInvalidWinningLottoinSettingWinningLotto(Lotto invalidLotto) {
@@ -47,13 +55,5 @@ class LottoCheckerTest {
         checker.settingWinningLotto(winningLotto);
 
         assertThat(checker.isWinningLotto(dummyLotto)).isFalse();
-    }
-
-    @ParameterizedTest(name = "잘못된 로또[{arguments}]로 Winning인지 검증하면 false를 반환한다")
-    @NullSource
-    void whenInvalidParameterisWinningLottoReturnFalse(Lotto invalidLotto, @MockLotto Lotto winningLotto) {
-        checker.settingWinningLotto(winningLotto);
-
-        assertThat(checker.isWinningLotto(invalidLotto)).isFalse();
     }
 }
