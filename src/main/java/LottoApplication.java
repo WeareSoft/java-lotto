@@ -6,7 +6,7 @@ import domain.actor.impl.LottoChecker;
 import domain.actor.impl.LottoPrizer;
 import domain.actor.impl.LottoSeller;
 import domain.lotto.Lotto;
-import domain.lotto.number.LottoNumber;
+import domain.lotto.number.LottoNumbers;
 import domain.lotto.prize.Prizeable;
 import domain.lotto.strategy.ManualNumberStrategy;
 import domain.lotto.strategy.RandomNumberStrategy;
@@ -14,7 +14,6 @@ import domain.wallet.Wallet;
 import input.AdminReader;
 import input.SellerReader;
 import java.util.List;
-import java.util.stream.Collectors;
 import output.LottoResultWriter;
 import output.LottoWriter;
 
@@ -42,13 +41,11 @@ public class LottoApplication {
         List<Long> winningLottoNumber = AdminReader.getWinningLotto();
 
         // logic
-        Lotto winningLotto = seller
-                .buyLotto(new Wallet(LOTTO_PRICE), new ManualNumberStrategy(winningLottoNumber.stream().map(LottoNumber::new).collect(Collectors.toList())))
-                .get(0);
+        Lotto winningLotto = seller.buyLotto(new Wallet(LOTTO_PRICE), new ManualNumberStrategy(new LottoNumbers(winningLottoNumber))).get(0);
         checker.settingWinningLotto(winningLotto);
         List<Prizeable> prizeinfo = checker.getLottoPrizeInfo(lottos);
 
         //output
-        LottoResultWriter.writePrizeInfo(money, prizer, prizeinfo);
+        LottoResultWriter.writePrizeInfo(money, prizer.getAllPrizeInfo(), prizeinfo);
     }
 }

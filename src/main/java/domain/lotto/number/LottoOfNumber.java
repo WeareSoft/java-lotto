@@ -1,25 +1,21 @@
 package domain.lotto.number;
 
 import domain.lotto.Lotto;
-import domain.lotto.LottoValueable;
-import java.util.List;
+import domain.lotto.LottoValueCollection;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class LottoOfNumber implements Lotto {
 
-    List<LottoValueable> values;
+    LottoValueCollection values;
 
-    public LottoOfNumber(List<LottoValueable> items) {
+    public LottoOfNumber(LottoValueCollection items) {
         this.values = items;
     }
 
     @Override
     public long getMatching(Lotto target) {
-        LottoOfNumber lotto = (LottoOfNumber) target;
-        return lotto.values.stream()
-                .filter(value -> values.contains(value))
-                .count();
+        LottoOfNumber targetValues = (LottoOfNumber) target;
+        return targetValues.values.getMatchingSize(values);
     }
 
     @Override
@@ -33,18 +29,16 @@ public class LottoOfNumber implements Lotto {
         }
 
         LottoOfNumber that = (LottoOfNumber) o;
-        return Objects.equals(values, that.values);
+        return Objects.equals(this.values.getLottoValues(), that.values.getLottoValues());
     }
 
     @Override
     public String toString() {
-        return values.stream()
-                .map(Objects::toString)
-                .collect(Collectors.joining(","));
+        return values.toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(values);
+        return Objects.hash(values.getLottoValues());
     }
 }

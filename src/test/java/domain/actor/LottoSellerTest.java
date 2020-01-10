@@ -17,12 +17,13 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @ExtendWith({LottoParameterExtension.class, StrategryParameterExtension.class})
 class LottoSellerTest {
 
-    private LottoSeller seller;
+    private LottoSellable seller;
 
     @BeforeEach
     void setUp() {
@@ -56,6 +57,15 @@ class LottoSellerTest {
     void emptyMoneyBuyLottoTest(long notEnoughMoney, @LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy strategy) {
         Wallet notEnoughWallet = new Wallet(notEnoughMoney);
         List<Lotto> lottos = seller.buyLotto(notEnoughWallet, strategy);
+
+        assertThat(lottos).isEmpty();
+    }
+
+    @ParameterizedTest(name = "LottoSeller에게 잘못된 생성 방법을 주면 빈값을 반환한다")
+    @NullSource
+    void test4(LottoValueBuildStrategy strategy) {
+        Wallet enoughWallet = new Wallet(10000);
+        List<Lotto> lottos = seller.buyLotto(enoughWallet, strategy);
 
         assertThat(lottos).isEmpty();
     }

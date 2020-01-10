@@ -3,8 +3,7 @@ package fixture;
 import static java.util.Objects.isNull;
 import static java.util.stream.Collectors.toList;
 
-import domain.lotto.LottoValueable;
-import domain.lotto.number.LottoNumber;
+import domain.lotto.number.LottoNumbers;
 import domain.lotto.strategy.ManualNumberStrategy;
 import domain.lotto.strategy.RandomNumberStrategy;
 import java.lang.annotation.ElementType;
@@ -53,8 +52,8 @@ public class StrategryParameterExtension implements ParameterResolver {
             int size = strategy.size();
             return new RandomNumberStrategy(size);
         } else if (!isNull(strategy) && strategy.type() == StrategyType.MANUAL) {
-            List<LottoValueable> items = Arrays.stream(strategy.item()).mapToObj(LottoNumber::new).collect(toList());
-            return new ManualNumberStrategy(items);
+            List<Long> items = Arrays.stream(strategy.item()).mapToObj(Long::valueOf).collect(toList());
+            return new ManualNumberStrategy(new LottoNumbers(items));
         }
 
         throw new ParameterResolutionException("Not Supported Annotation in Lotto Extension");

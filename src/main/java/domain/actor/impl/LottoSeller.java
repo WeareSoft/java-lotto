@@ -1,5 +1,7 @@
 package domain.actor.impl;
 
+import static java.util.Objects.isNull;
+
 import domain.actor.LottoBuildable;
 import domain.actor.LottoSellable;
 import domain.lotto.Lotto;
@@ -21,7 +23,7 @@ public class LottoSeller implements LottoSellable {
 
     @Override
     public List<Lotto> buyLotto(Payable payment, LottoValueBuildStrategy strategy) {
-        if (payment.isEmpty()) {
+        if (payment.isEmpty() || isNull(strategy)) {
             return Collections.emptyList();
         }
 

@@ -1,21 +1,19 @@
 package domain.lotto.strategy;
 
-import domain.lotto.LottoValueable;
-import java.util.List;
-import java.util.stream.Collectors;
+import domain.lotto.LottoValueCollection;
+import java.util.Collections;
 
 public class ManualNumberStrategy implements LottoValueBuildStrategy {
 
-    List<LottoValueable> values;
+    LottoValueCollection values;
 
-    public ManualNumberStrategy(List<LottoValueable> list) {
+    public ManualNumberStrategy(LottoValueCollection list) {
         this.values = list;
     }
 
     @Override
-    public List<LottoValueable> buildLottoVaules() {
-        return values.stream()
-                .sorted()
-                .collect(Collectors.toList());
+    public LottoValueCollection buildLottoVaules() {
+        Collections.sort(values.getLottoValues());
+        return values;
     }
 }

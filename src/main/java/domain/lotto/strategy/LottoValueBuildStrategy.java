@@ -1,9 +1,8 @@
 package domain.lotto.strategy;
 
-import domain.lotto.LottoValueable;
-import java.util.List;
+import domain.lotto.LottoValueCollection;
 
 public interface LottoValueBuildStrategy {
 
-    List<LottoValueable> buildLottoVaules();
+    LottoValueCollection buildLottoVaules();
 }

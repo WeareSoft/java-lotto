@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import domain.actor.impl.LottoBuilder;
 import domain.lotto.Lotto;
-import domain.lotto.LottoValueable;
+import domain.lotto.LottoValueCollection;
 import domain.lotto.strategy.ManualNumberStrategy;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,10 +51,7 @@ class LottoOfNumberTest {
 
 
     private Lotto generateLotto(int start, int end) {
-        List<LottoValueable> values = IntStream.rangeClosed(start, end)
-                .mapToObj(LottoNumber::new)
-                .collect(Collectors.toList());
-
+        LottoValueCollection values = new LottoNumbers(LongStream.rangeClosed(start, end).boxed().collect(Collectors.toList()));
         List<Lotto> lottos = builder.build(1, new ManualNumberStrategy(values));
 
         assertThat(lottos.size()).isEqualTo(1);
