@@ -2,6 +2,7 @@ package domain.actor;
 
 import domain.lotto.Lotto;
 import domain.lotto.LottoBuilder;
+import domain.lotto.strategy.LottoValueBuildStrategy;
 import domain.wallet.Wallet;
 import java.security.InvalidParameterException;
 import java.util.Collections;
@@ -16,13 +17,13 @@ public class LottoSeller {
         this.builder = builder;
     }
 
-    public List<Lotto> buyLotto(Wallet wallet) {
+    public List<Lotto> buyLotto(Wallet wallet, LottoValueBuildStrategy strategy) {
         if (wallet.isEmptyWallet()) {
             return Collections.emptyList();
         }
 
         return builder.size(getBuyLottoSize(wallet))
-                .build();
+                .build(strategy);
     }
 
     public void setLottoPrice(long settingPrice) {

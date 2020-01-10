@@ -5,13 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import domain.lotto.Lotto;
 import domain.lotto.LottoBuilder;
+import domain.lotto.strategy.LottoValueBuildStrategy;
 import domain.wallet.Wallet;
+import fixture.LottoParameterExtension;
+import fixture.StrategryParameterExtension;
+import fixture.StrategryParameterExtension.LottoBuildStrategy;
+import fixture.StrategryParameterExtension.StrategyType;
 import java.security.InvalidParameterException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@ExtendWith({LottoParameterExtension.class, StrategryParameterExtension.class})
 class LottoSellerTest {
 
     private LottoSeller seller;
@@ -23,12 +30,12 @@ class LottoSellerTest {
 
     @ParameterizedTest(name = "LottoSeller에게 돈{arguments}을 주고 Lotto를 살 수 있다")
     @ValueSource(longs = {1000, 3000, 5000})
-    void buyLottoTest(long enoughMoney) {
+    void buyLottoTest(long enoughMoney, @LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy strategy) {
         final long lottoPrice = 1000L;
         final long buyLottoSize = enoughMoney / lottoPrice;
         seller.setLottoPrice(lottoPrice);
 
-        List<Lotto> lottos = seller.buyLotto(new Wallet(enoughMoney));
+        List<Lotto> lottos = seller.buyLotto(new Wallet(enoughMoney), strategy);
 
         assertThat(lottos).isNotEmpty();
         assertThat(lottos.size()).isEqualTo(buyLottoSize);
@@ -45,9 +52,9 @@ class LottoSellerTest {
 
     @ParameterizedTest(name = "LottoSeller에게 돈 {arguments}으로 Lotto를 살 수 없다")
     @ValueSource(longs = {-1, 0})
-    void emptyMoneyBuyLottoTest(long notEnoughMoney) {
+    void emptyMoneyBuyLottoTest(long notEnoughMoney, @LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy strategy) {
         Wallet notEnoughWallet = new Wallet(notEnoughMoney);
-        List<Lotto> lottos = seller.buyLotto(notEnoughWallet);
+        List<Lotto> lottos = seller.buyLotto(notEnoughWallet, strategy);
 
         assertThat(lottos).isEmpty();
     }
