@@ -6,7 +6,7 @@ import domain.actor.LottoBuildable;
 import domain.actor.LottoSellable;
 import domain.lotto.Lotto;
 import domain.lotto.strategy.LottoValueBuildStrategy;
-import domain.wallet.Payable;
+import domain.pay.Payable;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.List;

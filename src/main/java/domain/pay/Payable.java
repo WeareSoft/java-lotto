@@ -1,4 +1,4 @@
-package domain.wallet;
+package domain.pay;
 
 public interface Payable {
 

@@ -10,7 +10,7 @@ import domain.lotto.number.LottoNumbers;
 import domain.lotto.prize.Prizeable;
 import domain.lotto.strategy.ManualNumberStrategy;
 import domain.lotto.strategy.RandomNumberStrategy;
-import domain.wallet.Wallet;
+import domain.pay.Wallet;
 import input.AdminReader;
 import input.SellerReader;
 import java.util.List;

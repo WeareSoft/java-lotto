@@ -2,7 +2,7 @@ package domain.actor;
 
 import domain.lotto.Lotto;
 import domain.lotto.strategy.LottoValueBuildStrategy;
-import domain.wallet.Payable;
+import domain.pay.Payable;
 import java.util.List;
 
 public interface LottoSellable {

@@ -7,7 +7,7 @@ import domain.actor.impl.LottoBuilder;
 import domain.actor.impl.LottoSeller;
 import domain.lotto.Lotto;
 import domain.lotto.strategy.LottoValueBuildStrategy;
-import domain.wallet.Wallet;
+import domain.pay.Wallet;
 import fixture.LottoParameterExtension;
 import fixture.StrategryParameterExtension;
 import fixture.StrategryParameterExtension.LottoBuildStrategy;
