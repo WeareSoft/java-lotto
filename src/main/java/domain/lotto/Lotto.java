@@ -1,7 +1,5 @@
 package domain.lotto;
 
-import domain.Rank;
-
 import java.util.List;
 
 /**
@@ -9,16 +7,14 @@ import java.util.List;
  */
 public class Lotto {
 
-	public static final int PICK_NUM = 6;
+	private static final int PICK_NUM = 6;
 	private List<LottoNumber> lotto;
 
 	public Lotto(List<LottoNumber> lotto) {
+		if (lotto.size() < PICK_NUM) {
+			throw new IllegalArgumentException();
+		}
 		this.lotto = lotto;
-	}
-
-	@Override
-	public String toString() {
-		return lotto.toString();
 	}
 
 	public Rank match(Lotto userLotto) {
@@ -37,4 +33,10 @@ public class Lotto {
 	private boolean contains(LottoNumber n) {
 		return lotto.contains(n);
 	}
+
+	@Override
+	public String toString() {
+		return lotto.toString();
+	}
+
 }

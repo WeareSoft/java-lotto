@@ -20,17 +20,16 @@ public class LottoCollection implements Iterable<Lotto> {
 	}
 
 	@Override
+	public Iterator<Lotto> iterator() {
+		return lottoList.iterator();
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Lotto lotto : lottoList) {
 			stringBuilder.append(lotto).append("\n");
 		}
 		return stringBuilder.toString();
-	}
-
-
-	@Override
-	public Iterator<Lotto> iterator() {
-		return lottoList.iterator();
 	}
 }

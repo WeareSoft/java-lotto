@@ -1,7 +1,5 @@
 package domain.lotto;
 
-import java.util.Map;
-
 /**
  * @author delf
  */

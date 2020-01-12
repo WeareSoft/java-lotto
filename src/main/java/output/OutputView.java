@@ -1,10 +1,6 @@
 package output;
 
-import domain.Rank;
 import domain.lotto.LottoCollection;
-import domain.money.Money;
-
-import java.util.Map;
 
 /**
  * @author delf

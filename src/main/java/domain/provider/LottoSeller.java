@@ -1,6 +1,5 @@
 package domain.provider;
 
-import domain.customer.Customer;
 import domain.lotto.Lotto;
 import domain.lotto.LottoCollection;
 import domain.money.Money;
