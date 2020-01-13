@@ -27,10 +27,6 @@ public class LottoChecker implements LottoMatchable {
         this.winningLotto = winningLotto;
     }
 
-    public boolean isWinningLotto(Lotto lotto) {
-        return winningLotto.equals(lotto);
-    }
-
     @Override
     public List<Prizeable> getLottoPrizeInfo(List<Lotto> lottos) {
         return lottos.stream()
