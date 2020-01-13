@@ -31,7 +31,7 @@ public class LottoApplication {
         LottoSellable seller = new LottoSeller(new LottoBuilder(), LOTTO_PRICE);
 
         //input
-        int money = SellerReader.getBuyMoney();
+        int money = SellerReader.getBuyMoney(LOTTO_PRICE);
 
         // logic
         List<Lotto> lottos = seller.buyLotto(new Wallet(money), new RandomNumberStrategy(LOTTO_NUMBER_SIZE));
