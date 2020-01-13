@@ -2,7 +2,7 @@ package domain.actor;
 
 import domain.lotto.prize.Prizeable;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public interface LottoPrizeable {
 
@@ -10,5 +10,5 @@ public interface LottoPrizeable {
 
     Prizeable getPrizeInfo(Long matchCount);
 
-    Map<Long, Prizeable> getAllPrizeInfo();
+    Set<Long> getPrizeMatchCounts();
 }

@@ -48,6 +48,6 @@ public class LottoApplication {
         List<Prizeable> prizeinfo = checker.getLottoPrizeInfo(lottos);
 
         //output
-        LottoResultWriter.writePrizeInfo(money, prizer.getAllPrizeInfo(), prizeinfo);
+        LottoResultWriter.writePrizeInfo(money, prizer, prizeinfo);
     }
 }

@@ -5,6 +5,7 @@ import domain.lotto.prize.LottoPrize;
 import domain.lotto.prize.Prizeable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class LottoPrizer implements LottoPrizeable {
@@ -34,5 +35,10 @@ public class LottoPrizer implements LottoPrizeable {
     @Override
     public Map<Long, Prizeable> getAllPrizeInfo() {
         return prizeableMap;
+    }
+
+    @Override
+    public Set<Long> getPrizeMatchCounts() {
+        return prizeableMap.keySet();
     }
 }
