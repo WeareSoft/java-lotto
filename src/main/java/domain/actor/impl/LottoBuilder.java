@@ -45,4 +45,13 @@ public class LottoBuilder implements LottoBuildable {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Lotto build(LottoValueBuildStrategy strategy) {
+        if (isNull(strategy)) {
+            throw new InvalidParameterException("invalid strategy parameter");
+        }
+
+        return LottoType.build(lottoType, strategy.buildLottoVaules());
+    }
 }

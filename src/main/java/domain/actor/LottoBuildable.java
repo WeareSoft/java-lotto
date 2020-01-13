@@ -10,4 +10,6 @@ public interface LottoBuildable {
     void setLottoType(LottoType lottoType);
 
     List<Lotto> build(int size, LottoValueBuildStrategy strategy);
+
+    Lotto build(LottoValueBuildStrategy strategy);
 }

@@ -1,3 +1,4 @@
+import domain.actor.LottoBuildable;
 import domain.actor.LottoMatchable;
 import domain.actor.LottoPrizeable;
 import domain.actor.LottoSellable;
@@ -24,6 +25,7 @@ public class LottoApplication {
 
     public static void main(String[] args) {
         // init
+        LottoBuildable builder = new LottoBuilder();
         LottoPrizeable prizer = new LottoPrizer();
         LottoMatchable checker = new LottoChecker(prizer);
         LottoSellable seller = new LottoSeller(new LottoBuilder(), LOTTO_PRICE);
@@ -41,7 +43,7 @@ public class LottoApplication {
         List<Long> winningLottoNumber = AdminReader.getWinningLotto();
 
         // logic
-        Lotto winningLotto = seller.buyLotto(new Wallet(LOTTO_PRICE), new ManualNumberStrategy(new LottoNumbers(winningLottoNumber))).get(0);
+        Lotto winningLotto = builder.build(new ManualNumberStrategy(new LottoNumbers(winningLottoNumber)));
         checker.settingWinningLotto(winningLotto);
         List<Prizeable> prizeinfo = checker.getLottoPrizeInfo(lottos);
 

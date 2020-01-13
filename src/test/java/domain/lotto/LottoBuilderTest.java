@@ -69,4 +69,22 @@ class LottoBuilderTest {
         assertThat(exception).isInstanceOf(InvalidParameterException.class)
                 .hasMessageContaining("invalid paramter");
     }
+
+    @Test
+    @DisplayName("로또 빌더에게 하나의 로또를 생성할 수 있다")
+    public void test5(@LottoBuildStrategy(type = StrategyType.MANUAL, item = {1, 2, 3}) LottoValueBuildStrategy strategy) {
+        Lotto lotto = builder.build(strategy);
+
+        assertThat(lotto).isNotNull();
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 빌더에게 잘못된 전략을 전달하면 에러를 반환한다")
+    @NullSource
+    public void test6(LottoValueBuildStrategy strategy) {
+        Exception exception = assertThrows(InvalidParameterException.class, () -> builder.build(strategy));
+
+        assertThat(exception).isInstanceOf(InvalidParameterException.class)
+                .hasMessageContaining("invalid strategy parameter");
+    }
 }
