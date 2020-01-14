@@ -33,11 +33,6 @@ public class LottoPrizer implements LottoPrizeable {
     }
 
     @Override
-    public Map<Long, Prizeable> getAllPrizeInfo() {
-        return prizeableMap;
-    }
-
-    @Override
     public Set<Long> getPrizeMatchCounts() {
         return prizeableMap.keySet();
     }

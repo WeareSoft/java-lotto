@@ -1,10 +1,10 @@
 package domain.pay;
 
-public class Wallet implements Payable {
+public class Money implements Payable {
 
     private long money;
 
-    public Wallet(long money) {
+    public Money(long money) {
         this.money = money;
     }
 

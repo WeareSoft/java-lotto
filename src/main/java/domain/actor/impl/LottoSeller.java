@@ -39,7 +39,7 @@ public class LottoSeller implements LottoSellable {
         this.lottoPrice = settingPrice;
     }
 
-    private int getBuyLottoSize(Payable wallet) {
-        return (int) (wallet.getMoney() / lottoPrice);
+    private int getBuyLottoSize(Payable payable) {
+        return (int) (payable.getMoney() / lottoPrice);
     }
 }

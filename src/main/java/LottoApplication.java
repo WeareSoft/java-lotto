@@ -11,7 +11,7 @@ import domain.lotto.number.LottoNumbers;
 import domain.lotto.prize.Prizeable;
 import domain.lotto.strategy.ManualNumberStrategy;
 import domain.lotto.strategy.RandomNumberStrategy;
-import domain.pay.Wallet;
+import domain.pay.Money;
 import input.AdminReader;
 import input.SellerReader;
 import java.util.List;
@@ -34,7 +34,7 @@ public class LottoApplication {
         int money = SellerReader.getBuyMoney(LOTTO_PRICE);
 
         // logic
-        List<Lotto> lottos = seller.buyLotto(new Wallet(money), new RandomNumberStrategy(LOTTO_NUMBER_SIZE));
+        List<Lotto> lottos = seller.buyLotto(new Money(money), new RandomNumberStrategy(LOTTO_NUMBER_SIZE));
 
         // output
         LottoWriter.writeLottos(lottos);

@@ -7,7 +7,8 @@ import domain.actor.impl.LottoBuilder;
 import domain.actor.impl.LottoSeller;
 import domain.lotto.Lotto;
 import domain.lotto.strategy.LottoValueBuildStrategy;
-import domain.pay.Wallet;
+import domain.pay.Money;
+import domain.pay.Payable;
 import fixture.LottoParameterExtension;
 import fixture.StrategryParameterExtension;
 import fixture.StrategryParameterExtension.LottoBuildStrategy;
@@ -37,7 +38,7 @@ class LottoSellerTest {
         final long buyLottoSize = enoughMoney / lottoPrice;
         seller.setLottoPrice(lottoPrice);
 
-        List<Lotto> lottos = seller.buyLotto(new Wallet(enoughMoney), strategy);
+        List<Lotto> lottos = seller.buyLotto(new Money(enoughMoney), strategy);
 
         assertThat(lottos).isNotEmpty();
         assertThat(lottos.size()).isEqualTo(buyLottoSize);
@@ -54,9 +55,9 @@ class LottoSellerTest {
 
     @ParameterizedTest(name = "LottoSeller에게 돈 {arguments}으로 Lotto를 살 수 없다")
     @ValueSource(longs = {-1, 0})
-    void emptyMoneyBuyLottoTest(long notEnoughMoney, @LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy strategy) {
-        Wallet notEnoughWallet = new Wallet(notEnoughMoney);
-        List<Lotto> lottos = seller.buyLotto(notEnoughWallet, strategy);
+    void emptyMoneyBuyLottoTest(long notEnoughAmount, @LottoBuildStrategy(type = StrategyType.RANDOM) LottoValueBuildStrategy strategy) {
+        Payable notEnoughMoney = new Money(notEnoughAmount);
+        List<Lotto> lottos = seller.buyLotto(notEnoughMoney, strategy);
 
         assertThat(lottos).isEmpty();
     }
@@ -64,8 +65,8 @@ class LottoSellerTest {
     @ParameterizedTest(name = "LottoSeller에게 잘못된 생성 방법을 주면 빈값을 반환한다")
     @NullSource
     void test4(LottoValueBuildStrategy strategy) {
-        Wallet enoughWallet = new Wallet(10000);
-        List<Lotto> lottos = seller.buyLotto(enoughWallet, strategy);
+        Payable enoughMoney = new Money(10000);
+        List<Lotto> lottos = seller.buyLotto(enoughMoney, strategy);
 
         assertThat(lottos).isEmpty();
     }
