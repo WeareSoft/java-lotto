@@ -1,18 +1,10 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
-	private static final int PRICE = 1000;
+	private final List<Ticket> tickets;
 
-	private List<Ticket> tickets;
-
-	public LottoGame() {
-		tickets = new ArrayList<>();
-	}
-
-	public List<Ticket> buyTickets(final int money, final NumberGenerator numberGenerator) {
-		tickets = TicketFactory.create(money / PRICE, numberGenerator);
-		return tickets;
+	public LottoGame(final List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
 	public LottoResult matchTickets(final WinningTicket winningTicket) {
