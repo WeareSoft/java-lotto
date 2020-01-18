@@ -7,6 +7,7 @@ public class Main {
 		LottoSeller seller = new LottoSeller(new RandomNumberGenerator(LOTTO_NUMBER_SIZE));
 
 		int money = InputView.askPurchasingAmount();
+		ResultView.printLottoCount(money / LottoSeller.UNIT_PRICE);
 
 		List<Ticket> tickets = seller.buyTickets(money);
 		ResultView.printTickets(tickets);
