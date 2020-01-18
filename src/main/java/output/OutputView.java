@@ -1,20 +1,23 @@
 package output;
 
 import domain.lotto.LottoCollection;
+import domain.LottoStatistics;
 
 /**
  * @author delf
  */
 public class OutputView {
 
-	public void printLotto(LottoCollection lottoCollection) {
+	public static void printLotto(LottoCollection lottoCollection) {
 		System.out.println(lottoCollection.size() + "개를 구매했습니다.");
-		System.out.println(lottoCollection);
+		lottoCollection.forEach(System.out::println);
 	}
 
-	public void showWinningStatistics(Statistics statistics) {
+	public static void showWinningStatistics(LottoStatistics lottoStatistics) {
 		System.out.println("당첨 통계" + "\n" + "-------------");
-		System.out.println(statistics);
-
+		lottoStatistics.forEach(rank -> System.out.println(
+				String.format("- %s %s개", rank, lottoStatistics.getCount(rank)))
+		);
+		System.out.println(String.format("\n총 수익률은 %.2f%%입니다.", lottoStatistics.getRor()));
 	}
 }
