@@ -8,6 +8,7 @@ public class Main {
 		ResultView.printTickets(game.buyTickets(money, new RandomNumberGenerator(LOTTO_NUMBER_SIZE)));
 
 		WinningTicket winningTicket = new WinningTicket(LottoNumbers.of(InputView.askWinningNumbers()));
+
 		LottoResult result = game.matchTickets(winningTicket);
 		ResultView.printStatistics(result);
 		ResultView.printRateOfRevenue(game.calculateRevenue(money, result));
