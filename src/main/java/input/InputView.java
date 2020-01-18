@@ -13,20 +13,20 @@ public class InputView {
 	private static final String buyGuideText = "구입금액을 입력해 주세요.";
 	private static final String winningGuideText = "지난 주 당첨 번호를 입력해 주세요.";
 
-	public Money inputMoney() {
+	public static Money inputMoney() {
 		return buyMock(1400000);
 	}
 
-	private Money buyMock(int n) {
+	private static Money buyMock(int n) {
 		System.out.println(buyGuideText);
 		return new Money(n);
 	}
 
-	public Lotto inputWinningLottoNumber() {
+	public static Lotto inputWinningLottoNumber() {
 		return winningLottoMock();
 	}
 
-	private Lotto winningLottoMock() {
+	private static Lotto winningLottoMock() {
 		System.out.println(winningGuideText);
 		Lotto lotto = new Lotto(Arrays.asList(LottoNumber.of(1), LottoNumber.of(2), LottoNumber.of(3), LottoNumber.of(4), LottoNumber.of(5), LottoNumber.of(6)));
 		System.out.println(lotto);

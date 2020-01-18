@@ -4,26 +4,24 @@ import domain.money.Money;
 import domain.provider.LottoSeller;
 import input.InputView;
 import output.OutputView;
-import output.Statistics;
+import domain.LottoStatistics;
 
 /**
  * @author delf
  */
 public class LottoApplication {
 	public static void main(String[] args) {
-		InputView inputView = new InputView();
-		OutputView outputView = new OutputView();
+		final Money lottoPrice = Money.of(1000);
+		LottoSeller lottoSeller = new LottoSeller(lottoPrice);
 
-		LottoSeller lottoSeller = new LottoSeller();
-
-		Money money = inputView.inputMoney();
+		Money money = InputView.inputMoney();
 		LottoCollection myLotto = lottoSeller.sellTo(money);
 
-		outputView.printLotto(myLotto);
+		OutputView.printLotto(myLotto);
 
-		Lotto winningLotto = inputView.inputWinningLottoNumber();
+		Lotto winningLotto = InputView.inputWinningLottoNumber();
 
-		Statistics statistics = new Statistics(winningLotto, myLotto, money);
-		outputView.showWinningStatistics(statistics);
+		LottoStatistics lottoStatistics = new LottoStatistics(winningLotto, myLotto, money);
+		OutputView.showWinningStatistics(lottoStatistics);
 	}
 }

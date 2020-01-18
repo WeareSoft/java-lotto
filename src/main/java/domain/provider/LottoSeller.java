@@ -12,16 +12,21 @@ import java.util.List;
  */
 public class LottoSeller {
 
-	private static final Money LOTTO_PRICE = new Money(1_000);
+	private  Money lotto;
 	private LottoGenerator lottoGenerator = new LottoGenerator(); // 현재는 고정
 
-	public LottoCollection sellTo(Money money) {
-		int nLotto = howManyLotto(money);
-		return generateLottoCollection(nLotto);
+	public LottoSeller(Money lottoPrice) {
+		this.lotto = lottoPrice;
+
 	}
 
-	private int howManyLotto(Money money) {
-		return money.divide(LOTTO_PRICE).getAmount();
+	public LottoCollection sellTo(Money money) {
+		int buyLottoSize = getCountOfLotto(money);
+		return generateLottoCollection(buyLottoSize);
+	}
+
+	private int getCountOfLotto(Money money) {
+		return Money.of(money).getAmount() / lotto.getAmount();
 	}
 
 	private LottoCollection generateLottoCollection(/* 로또 생성 전략 ,*/ int size) {
