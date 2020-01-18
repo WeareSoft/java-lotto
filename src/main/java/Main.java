@@ -14,7 +14,7 @@ public class Main {
 		WinningTicket winningTicket = new WinningTicket(LottoNumbers.of(InputView.askWinningNumbers()));
 
 		LottoGame game = new LottoGame(tickets);
-		LottoResult result = game.matchTickets(winningTicket);
+		LottoResult result = game.matchTickets(winningTicket, LottoNumber.of(InputView.askBonusNumber()));
 		ResultView.printStatistics(result);
 		ResultView.printRateOfRevenue(game.calculateRevenue(money, result));
 	}
