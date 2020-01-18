@@ -3,7 +3,10 @@ public enum Rank {
 	SECOND(5, true,  30000000),
 	THIRD(5, false, 1500000),
 	FOURTH(4, false, 50000),
-	FIFTH(3, false, 5000);
+	FIFTH(3, false, 5000),
+	MISS(0, false, 0);
+
+	private static final int WINNING_MIN_COUNT = 3;
 
 	private int countOfMatch;
 	private boolean isBonusMatch;
@@ -16,6 +19,10 @@ public enum Rank {
 	}
 
 	public static Rank valueOf(final int countOfMatch, final boolean isBonusMatch) {
+		if (countOfMatch < WINNING_MIN_COUNT) {
+			return MISS;
+		}
+
 		for (final Rank rank : Rank.values()) {
 			if (rank.countOfMatch == countOfMatch && rank.isBonusMatch == isBonusMatch) {
 				return rank;
@@ -27,5 +34,11 @@ public enum Rank {
 
 	public int getPrizeMoney() {
 		return prizeMoney;
+	}
+
+	@Override
+	public String toString() {
+		if (isBonusMatch) return String.format("%d개 일치, 보너스 볼 일치 (%d원)", countOfMatch, prizeMoney);
+		return String.format("%d개 일치 (%d원)", countOfMatch, prizeMoney);
 	}
 }
