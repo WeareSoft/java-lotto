@@ -4,19 +4,20 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomNumberGenerator implements NumberGenerator {
-	private static final int LOTTO_NUMBERS_COUNT = 6;
+	private final int size;
+
+	public RandomNumberGenerator(final int size) {
+		this.size = size;
+	}
 
 	@Override
 	public List<Integer> generate() {
-		final List<Integer> randomNumbers = getRandomNumbers();
-		Collections.sort(randomNumbers);
-		return randomNumbers;
-	}
-
-	private List<Integer> getRandomNumbers() {
 		final List<Integer> candidateLottoNumbers = generateRangeNumbers();
 		Collections.shuffle(candidateLottoNumbers);
-		return candidateLottoNumbers.subList(0, LOTTO_NUMBERS_COUNT);
+		return candidateLottoNumbers.stream()
+				.limit(size)
+				.sorted()
+				.collect(Collectors.toList());
 	}
 
 	private List<Integer> generateRangeNumbers() {
