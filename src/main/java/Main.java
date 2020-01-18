@@ -3,7 +3,7 @@ public class Main {
 		LottoGame game = new LottoGame();
 
 		int money = InputView.askPurchasingAmount();
-		ResultView.printTickets(game.buyTicket(money, new RandomNumberGenerator()));
+		ResultView.printTickets(game.buyTickets(money, new RandomNumberGenerator()));
 
 		WinningTicket winningTicket = new WinningTicket(LottoNumbers.of(InputView.askWinningNumbers()));
 		LottoResult result = game.matchTickets(winningTicket);

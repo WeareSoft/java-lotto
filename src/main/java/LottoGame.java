@@ -10,7 +10,7 @@ public class LottoGame {
 		tickets = new ArrayList<>();
 	}
 
-	public List<Ticket> buyTicket(final int money, final NumberGenerator numberGenerator) {
+	public List<Ticket> buyTickets(final int money, final NumberGenerator numberGenerator) {
 		tickets = TicketFactory.create(money / PRICE, numberGenerator);
 		return tickets;
 	}
