@@ -1,21 +1,24 @@
 import java.util.Objects;
 
 public class LottoNumber {
-	private final int number;
+	public static final int MIN_VALUE = 1;
+	public static final int MAX_VALUE = 45;
+
+	private final int value;
 
 	public static LottoNumber of(final int number) {
 		return new LottoNumber(number);
 	}
 
-	public LottoNumber(final int number) {
-		if (number < 1 || number > 45) {
+	public LottoNumber(final int value) {
+		if (value < MIN_VALUE || value > MAX_VALUE) {
 			throw new IllegalArgumentException();
 		}
-		this.number = number;
+		this.value = value;
 	}
 
 	public int toInt() {
-		return number;
+		return value;
 	}
 
 	@Override
@@ -23,11 +26,11 @@ public class LottoNumber {
 		if (this == o) return true;
 		if (!(o instanceof LottoNumber)) return false;
 		LottoNumber that = (LottoNumber) o;
-		return number == that.number;
+		return value == that.value;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(number);
+		return Objects.hash(value);
 	}
 }

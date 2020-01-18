@@ -4,9 +4,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomNumberGenerator implements NumberGenerator {
-	private static final int LOTTO_MIN_NUMBER = 1;
-	private static final int LOTTO_MAX_NUMBER = 45;
-	private static final int LOTTO_WINNING_NUMBERS_COUNT = 6;
+	private static final int LOTTO_NUMBERS_COUNT = 6;
 
 	@Override
 	public List<Integer> generate() {
@@ -18,11 +16,11 @@ public class RandomNumberGenerator implements NumberGenerator {
 	private List<Integer> getRandomNumbers() {
 		final List<Integer> candidateLottoNumbers = generateRangeNumbers();
 		Collections.shuffle(candidateLottoNumbers);
-		return candidateLottoNumbers.subList(0, LOTTO_WINNING_NUMBERS_COUNT);
+		return candidateLottoNumbers.subList(0, LOTTO_NUMBERS_COUNT);
 	}
 
 	private List<Integer> generateRangeNumbers() {
-		return IntStream.rangeClosed(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)
+		return IntStream.rangeClosed(LottoNumber.MIN_VALUE, LottoNumber.MAX_VALUE)
 				.boxed()
 				.collect(Collectors.toList());
 	}
