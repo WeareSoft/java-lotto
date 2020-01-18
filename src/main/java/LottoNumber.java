@@ -12,7 +12,7 @@ public class LottoNumber {
 
 	public LottoNumber(final int value) {
 		if (value < MIN_VALUE || value > MAX_VALUE) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("로또 번호는 " + MIN_VALUE + "이상 " + MAX_VALUE + "이하 이어야 합니다.");
 		}
 		this.value = value;
 	}
