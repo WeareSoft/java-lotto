@@ -8,15 +8,12 @@ import java.util.List;
  */
 public class LottoCollection implements Iterable<Lotto> {
 	private List<Lotto> lottoList;
-	private int size;
 
 	public LottoCollection(List<Lotto> lottoList) {
+		if(lottoList.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
 		this.lottoList = lottoList;
-		this.size = lottoList.size();
-	}
-
-	public int size() {
-		return this.size;
 	}
 
 	@Override
@@ -24,12 +21,7 @@ public class LottoCollection implements Iterable<Lotto> {
 		return lottoList.iterator();
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		for (Lotto lotto : lottoList) {
-			stringBuilder.append(lotto).append("\n");
-		}
-		return stringBuilder.toString();
+	public int size() {
+		return lottoList.size();
 	}
 }
