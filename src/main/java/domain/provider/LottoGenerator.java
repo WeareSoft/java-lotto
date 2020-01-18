@@ -15,8 +15,8 @@ public class LottoGenerator {
 
 	private static List<Integer> lottoNumberList = IntStream.rangeClosed(LottoNumber.MIN, LottoNumber.MAX).boxed().collect(Collectors.toList());
 
-	public Lotto generateLotto() {
+	synchronized public Lotto generateLotto() {
 		Collections.shuffle(lottoNumberList);
-		return new Lotto(lottoNumberList.stream().limit(6).map(LottoNumber::of).collect(Collectors.toList()));
+		return new Lotto(lottoNumberList.stream().limit(Lotto.PICK_NUM).map(LottoNumber::of).collect(Collectors.toList()));
 	}
 }

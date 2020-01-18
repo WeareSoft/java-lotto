@@ -23,13 +23,13 @@ class MoneyTest {
 	void minorsMoneyTest() {
 		Money m1 = new Money(2000);
 		Money m2 = new Money(1000);
-		assertThat(m1.minors(m2).getAmount()).isEqualTo(1000);
+		assertThat(m1.minus(m2).getAmount()).isEqualTo(1000);
 	}
 
 	@Test
 	void minorsMoneyTestWhenNegativeResult() {
 		Money m1 = new Money(1000);
 		Money m2 = new Money(2000);
-		assertThrows(IllegalArgumentException.class, () -> m1.minors(m2));
+		assertThrows(IllegalArgumentException.class, () -> m1.minus(m2));
 	}
 }

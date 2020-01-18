@@ -1,4 +1,4 @@
-package domain.lotto;
+package domain;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public enum Rank {
 	private int countOfMatch;
 	private int winningMoney;
 
-	private Rank(int countOfMatch, int winningMoney) {
+	Rank(int countOfMatch, int winningMoney) {
 		this.countOfMatch = countOfMatch;
 		this.winningMoney = winningMoney;
 	}
@@ -53,14 +53,14 @@ public enum Rank {
 
 	public static Map<Rank, Integer> RANK_COUNTER() {
 		Map<Rank, Integer> map = new HashMap<>();
-		for(Rank r : Rank.values()) {
-			map.put(r, 0);
+		for(Rank rank : Rank.values()) {
+			map.put(rank, 0);
 		}
 		return map;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%d개 일치 (%d원)", countOfMatch, winningMoney);
+		return String.format("%d개 일치 (%,d원)", countOfMatch, winningMoney);
 	}
 }
