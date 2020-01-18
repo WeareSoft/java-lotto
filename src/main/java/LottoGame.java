@@ -10,7 +10,7 @@ public class LottoGame {
 	public LottoResult matchTickets(final WinningTicket winningTicket, final LottoNumber bonusNumber) {
 		LottoResult lottoResult = new LottoResult();
 		for (Ticket ticket : tickets) {
-			lottoResult.add(Rank.valueOf(ticket.matchCount(winningTicket), ticket.matchCount(bonusNumber)));
+			lottoResult.add(Rank.valueOf(ticket.matchCount(winningTicket), ticket.contains(bonusNumber)));
 		}
 
 		return lottoResult;

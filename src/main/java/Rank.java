@@ -1,23 +1,23 @@
 public enum Rank {
-	FIRST(6, 0, 2000000000),
-	SECOND(5, 1,  30000000),
-	THIRD(5, 0, 1500000),
-	FOURTH(4, 0, 50000),
-	FIFTH(3, 0, 5000);
+	FIRST(6, false, 2000000000),
+	SECOND(5, true,  30000000),
+	THIRD(5, false, 1500000),
+	FOURTH(4, false, 50000),
+	FIFTH(3, false, 5000);
 
 	private int countOfMatch;
-	private int countOfBonusMatch;
+	private boolean isBonusMatch;
 	private int prizeMoney;
 
-	Rank(final int countOfMatch, final int countOfBonusMatch, final int prizeMoney) {
+	Rank(final int countOfMatch, final boolean isBonusMatch, final int prizeMoney) {
 		this.countOfMatch = countOfMatch;
-		this.countOfBonusMatch = countOfBonusMatch;
+		this.isBonusMatch = isBonusMatch;
 		this.prizeMoney = prizeMoney;
 	}
 
-	public static Rank valueOf(final int countOfMatch, final int countOfBonusMatch) {
+	public static Rank valueOf(final int countOfMatch, final boolean isBonusMatch) {
 		for (final Rank rank : Rank.values()) {
-			if (rank.countOfMatch == countOfMatch && rank.countOfBonusMatch == countOfBonusMatch) {
+			if (rank.countOfMatch == countOfMatch && rank.isBonusMatch == isBonusMatch) {
 				return rank;
 			}
 		}
@@ -28,5 +28,4 @@ public enum Rank {
 	public int getPrizeMoney() {
 		return prizeMoney;
 	}
-
 }

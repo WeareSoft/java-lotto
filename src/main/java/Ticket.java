@@ -11,11 +11,6 @@ public class Ticket {
 		return Math.toIntExact(numbers.toList().stream().filter(winningTicket::contains).count());
 	}
 
-	public int matchCount(final LottoNumber lottoNumber) {
-		if (this.contains(lottoNumber)) return 1;
-		else return 0;
-	}
-
 	public boolean contains(final LottoNumber lottoNumber) {
 		return this.numbers.toList().contains(lottoNumber);
 	}
