@@ -16,10 +16,6 @@ public class LottoNumbers {
 		return new LottoNumbers(numbers.stream().map(LottoNumber::of).collect(Collectors.toList()));
 	}
 
-	public static List<Integer> of(final LottoNumbers lottoNumbers) {
-		return lottoNumbers.numbers.stream().map(LottoNumber::toInt).collect(Collectors.toList());
-	}
-
 	public LottoNumbers(final List<LottoNumber> numbers) {
 		this.numbers = numbers;
 	}
