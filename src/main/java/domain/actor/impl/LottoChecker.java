@@ -31,7 +31,7 @@ public class LottoChecker implements LottoMatchable {
 
     @Override
     public void settingBonusLotto(Lotto bonusLotto) {
-        if (isNull(winningLotto)) {
+        if (isNull(bonusLotto)) {
             throw new InvalidParameterException("invalid bonus lotto");
         }
 
@@ -42,7 +42,7 @@ public class LottoChecker implements LottoMatchable {
     public List<Prizeable> getLottoPrizeInfo(List<Lotto> lottos) {
         return lottos.stream()
                 .map(lotto -> lotto.getMatchingInfo(winningLotto, bonusLotto))
-                .map(matchingInfo -> prizeManager.getPrizeInfo(matchingInfo))
+                .map(prizeManager::getPrizeInfo)
                 .collect(Collectors.toList());
     }
 }

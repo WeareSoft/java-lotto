@@ -9,7 +9,8 @@ import java.util.Objects;
 
 public class LottoOfNumber implements Lotto {
 
-    LottoValueCollection values;
+    private static final long EMPTY = 0;
+    private LottoValueCollection values;
 
     public LottoOfNumber(LottoValueCollection items) {
         this.values = items;
@@ -22,7 +23,7 @@ public class LottoOfNumber implements Lotto {
 
     private long getMatchCount(Lotto lotto) {
         if (isNull(lotto)) {
-            return 0;
+            return EMPTY;
         }
 
         LottoOfNumber lottoValue = (LottoOfNumber) lotto;
