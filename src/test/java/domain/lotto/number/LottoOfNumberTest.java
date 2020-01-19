@@ -46,7 +46,7 @@ class LottoOfNumberTest {
         Lotto lotto = generateLotto(1, 6);
         Lotto compareLotto = generateLotto(1, 6);
 
-        assertThat(lotto.getMatching(compareLotto)).isEqualTo(6);
+        assertThat(lotto.getMatchingInfo(compareLotto, null).isMatch(6)).isTrue();
     }
 
 

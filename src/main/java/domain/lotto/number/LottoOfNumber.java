@@ -1,5 +1,7 @@
 package domain.lotto.number;
 
+import static java.util.Objects.isNull;
+
 import domain.lotto.Lotto;
 import domain.lotto.LottoValueCollection;
 import domain.lotto.MatchingInfo;
@@ -14,20 +16,17 @@ public class LottoOfNumber implements Lotto {
     }
 
     @Override
-    public long getMatching(Lotto target) {
-        LottoOfNumber targetValues = (LottoOfNumber) target;
-        return targetValues.values.getMatchingSize(values);
+    public MatchingInfo getMatchingInfo(Lotto winningLotto, Lotto bonusLotto) {
+        return new MatchingInfo(getMatchCount(winningLotto), getMatchCount(bonusLotto));
     }
 
-    @Override
-    public MatchingInfo getMatchingInfo(Lotto winningLotto, Lotto bonusLotto) {
-        LottoOfNumber winningLottoValue = (LottoOfNumber) winningLotto;
-        long winningMatchCount = winningLottoValue.values.getMatchingSize(values);
+    private long getMatchCount(Lotto lotto) {
+        if (isNull(lotto)) {
+            return 0;
+        }
 
-        LottoOfNumber bonusLottoValue = (LottoOfNumber) bonusLotto;
-        long bonusMatchCount = bonusLottoValue.values.getMatchingSize(values);
-
-        return new MatchingInfo(winningMatchCount, bonusMatchCount);
+        LottoOfNumber lottoValue = (LottoOfNumber) lotto;
+        return lottoValue.values.getMatchingSize(values);
     }
 
     @Override

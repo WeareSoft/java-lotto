@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class LottoChecker implements LottoMatchable {
 
-    //todo : 추상화하기
     private Lotto winningLotto;
     private Lotto bonusLotto;
     private LottoPrizeable prizeManager;

@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 public class LottoNumbers implements LottoValueCollection {
 
+    private static final String DELIMITER = ",";
+
     private List<LottoValueable> values;
 
     public LottoNumbers(List<Long> numbers) {
@@ -33,7 +35,7 @@ public class LottoNumbers implements LottoValueCollection {
     public String toString() {
         return values.stream()
                 .map(Objects::toString)
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(DELIMITER));
     }
 
     @Override
