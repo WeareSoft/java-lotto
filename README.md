@@ -1,4 +1,4 @@
-# java-lotto
+# java.lotto
 
 ## [Step1] 로또 - 자동
 ### 기능 요구 사항
