@@ -4,11 +4,10 @@ public class Main {
 	private static final int LOTTO_NUMBER_SIZE = 6;
 
 	public static void main(String[] args) {
-		LottoSeller seller = new LottoSeller(new RandomNumberGenerator(LOTTO_NUMBER_SIZE));
-
 		int money = InputView.askPurchasingAmount();
 		ResultView.printLottoCount(money / LottoSeller.UNIT_PRICE);
 
+		LottoSeller seller = new LottoSeller(new RandomNumberGenerator(LOTTO_NUMBER_SIZE));
 		List<Ticket> tickets = seller.buyTickets(money);
 		ResultView.printTickets(tickets);
 
