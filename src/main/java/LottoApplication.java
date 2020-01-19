@@ -1,5 +1,7 @@
 import domain.lotto.Lotto;
 import domain.lotto.LottoCollection;
+import domain.lotto.LottoNumber;
+import domain.lotto.WinningLotto;
 import domain.money.Money;
 import domain.provider.LottoSeller;
 import input.InputView;
@@ -15,11 +17,12 @@ public class LottoApplication {
 		LottoSeller lottoSeller = new LottoSeller(lottoPrice);
 
 		Money money = InputView.inputMoney();
+
 		LottoCollection myLotto = lottoSeller.sellTo(money);
 
 		OutputView.printLotto(myLotto);
 
-		Lotto winningLotto = InputView.inputWinningLottoNumber();
+		WinningLotto winningLotto = InputView.inputWinningLottoNumber();
 
 		LottoStatistics lottoStatistics = new LottoStatistics(winningLotto, myLotto, money);
 		OutputView.showWinningStatistics(lottoStatistics);

@@ -17,7 +17,6 @@ public class LottoSeller {
 
 	public LottoSeller(Money lottoPrice) {
 		this.lotto = lottoPrice;
-
 	}
 
 	public LottoCollection sellTo(Money money) {
