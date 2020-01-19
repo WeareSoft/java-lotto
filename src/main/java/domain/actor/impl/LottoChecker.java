@@ -12,26 +12,38 @@ import java.util.stream.Collectors;
 
 public class LottoChecker implements LottoMatchable {
 
+    //todo : 추상화하기
     private Lotto winningLotto;
+    private Lotto bonusLotto;
     private LottoPrizeable prizeManager;
 
     public LottoChecker(LottoPrizeable lottoPrizeable) {
         this.prizeManager = lottoPrizeable;
     }
 
+    @Override
     public void settingWinningLotto(Lotto winningLotto) {
         if (isNull(winningLotto)) {
-            throw new InvalidParameterException("invalid lotto");
+            throw new InvalidParameterException("invalid winning lotto");
         }
 
         this.winningLotto = winningLotto;
     }
 
     @Override
+    public void settingBonusLotto(Lotto bonusLotto) {
+        if (isNull(winningLotto)) {
+            throw new InvalidParameterException("invalid bonus lotto");
+        }
+
+        this.bonusLotto = bonusLotto;
+    }
+
+    @Override
     public List<Prizeable> getLottoPrizeInfo(List<Lotto> lottos) {
         return lottos.stream()
-                .map(lotto -> winningLotto.getMatching(lotto))
-                .map(matchCount -> prizeManager.getPrizeInfo(matchCount))
+                .map(lotto -> lotto.getMatchingInfo(winningLotto, bonusLotto))
+                .map(matchingInfo -> prizeManager.getPrizeInfo(matchingInfo))
                 .collect(Collectors.toList());
     }
 }

@@ -34,18 +34,23 @@ public class LottoApplication {
         int money = SellerReader.getBuyMoney(LOTTO_PRICE);
 
         // logic
-        List<Lotto> lottos = seller.buyLotto(new Money(money), new RandomNumberStrategy(LOTTO_NUMBER_SIZE));
+        List<Lotto> buyLottos = seller.buyLotto(new Money(money), new RandomNumberStrategy(LOTTO_NUMBER_SIZE));
 
         // output
-        LottoWriter.writeLottos(lottos);
+        LottoWriter.writeLottos(buyLottos);
 
         // input
         List<Long> winningLottoNumber = AdminReader.getWinningLotto();
+        Long bonusLottoNumber = AdminReader.getBounsLotto();
 
         // logic
         Lotto winningLotto = builder.build(new ManualNumberStrategy(new LottoNumbers(winningLottoNumber)));
         checker.settingWinningLotto(winningLotto);
-        List<Prizeable> prizeinfo = checker.getLottoPrizeInfo(lottos);
+
+        Lotto bonusLotto = builder.build(new ManualNumberStrategy(new LottoNumbers(bonusLottoNumber)));
+        checker.settingBonusLotto(bonusLotto);
+
+        List<Prizeable> prizeinfo = checker.getLottoPrizeInfo(buyLottos);
 
         //output
         LottoResultWriter.writePrizeInfo(money, prizer, prizeinfo);

@@ -2,6 +2,7 @@ package domain.lotto.number;
 
 import domain.lotto.Lotto;
 import domain.lotto.LottoValueCollection;
+import domain.lotto.MatchingInfo;
 import java.util.Objects;
 
 public class LottoOfNumber implements Lotto {
@@ -16,6 +17,17 @@ public class LottoOfNumber implements Lotto {
     public long getMatching(Lotto target) {
         LottoOfNumber targetValues = (LottoOfNumber) target;
         return targetValues.values.getMatchingSize(values);
+    }
+
+    @Override
+    public MatchingInfo getMatchingInfo(Lotto winningLotto, Lotto bonusLotto) {
+        LottoOfNumber winningLottoValue = (LottoOfNumber) winningLotto;
+        long winningMatchCount = winningLottoValue.values.getMatchingSize(values);
+
+        LottoOfNumber bonusLottoValue = (LottoOfNumber) bonusLotto;
+        long bonusMatchCount = bonusLottoValue.values.getMatchingSize(values);
+
+        return new MatchingInfo(winningMatchCount, bonusMatchCount);
     }
 
     @Override

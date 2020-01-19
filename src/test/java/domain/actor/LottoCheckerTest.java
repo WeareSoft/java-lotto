@@ -29,6 +29,15 @@ class LottoCheckerTest {
         Exception exception = assertThrows(InvalidParameterException.class, () -> checker.settingWinningLotto(invalidLotto));
 
         assertThat(exception).isInstanceOf(InvalidParameterException.class)
-                .hasMessageContaining("invalid lotto");
+                .hasMessageContaining("invalid winning lotto");
+    }
+
+    @ParameterizedTest(name = "LottoCheck에게 잘못된 보너스 로또[{arguments}]를 입력하면 에러를 반환한다")
+    @NullSource
+    void whenInvalidBonusLottoinSettingBonusLotto(Lotto invalidLotto) {
+        Exception exception = assertThrows(InvalidParameterException.class, () -> checker.settingBonusLotto(invalidLotto));
+
+        assertThat(exception).isInstanceOf(InvalidParameterException.class)
+                .hasMessageContaining("invalid bonus lotto");
     }
 }
