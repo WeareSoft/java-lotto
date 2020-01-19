@@ -26,7 +26,9 @@ public class LottoResult {
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Rank rank : rankCountMap.keySet()) {
-			stringBuilder.append(rankCountMap.get(rank) * rank.getPrizeMoney());
+			stringBuilder.append(rank.toString())
+					.append(String.format(" - %d개", rankCountMap.get(rank)))
+					.append("\n");
 		}
 		return stringBuilder.toString();
 	}

@@ -7,7 +7,7 @@ public class Ticket {
 		this.numbers = numbers;
 	}
 
-	public int match(final WinningTicket winningTicket) {
+	public int matchCount(final WinningTicket winningTicket) {
 		return Math.toIntExact(numbers.toList().stream().filter(winningTicket::contains).count());
 	}
 
