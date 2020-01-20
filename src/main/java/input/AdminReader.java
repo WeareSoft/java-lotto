@@ -17,4 +17,15 @@ public class AdminReader {
                 .map(Long::new)
                 .collect(Collectors.toList());
     }
+
+    public static Long getBounsLotto() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+//        Scanner scanner = new Scanner(System.in);
+//        String bonusLotto = scanner.nextLine();
+        String bonusLotto = "1";
+        System.out.println(bonusLotto);
+        System.out.println();
+
+        return Long.parseLong(bonusLotto);
+    }
 }

@@ -9,4 +9,6 @@ public interface LottoMatchable {
     List<Prizeable> getLottoPrizeInfo(List<Lotto> lottos);
 
     void settingWinningLotto(Lotto winningLotto);
+
+    void settingBonusLotto(Lotto winningLotto);
 }

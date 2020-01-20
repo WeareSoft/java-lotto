@@ -1,21 +1,33 @@
 package domain.lotto.number;
 
+import static java.util.Objects.isNull;
+
 import domain.lotto.Lotto;
 import domain.lotto.LottoValueCollection;
+import domain.lotto.MatchingInfo;
 import java.util.Objects;
 
 public class LottoOfNumber implements Lotto {
 
-    LottoValueCollection values;
+    private static final long EMPTY = 0;
+    private LottoValueCollection values;
 
     public LottoOfNumber(LottoValueCollection items) {
         this.values = items;
     }
 
     @Override
-    public long getMatching(Lotto target) {
-        LottoOfNumber targetValues = (LottoOfNumber) target;
-        return targetValues.values.getMatchingSize(values);
+    public MatchingInfo getMatchingInfo(Lotto winningLotto, Lotto bonusLotto) {
+        return new MatchingInfo(getMatchCount(winningLotto), getMatchCount(bonusLotto));
+    }
+
+    private long getMatchCount(Lotto lotto) {
+        if (isNull(lotto)) {
+            return EMPTY;
+        }
+
+        LottoOfNumber lottoValue = (LottoOfNumber) lotto;
+        return lottoValue.values.getMatchingSize(values);
     }
 
     @Override

@@ -1,14 +1,12 @@
 package domain.actor;
 
+import domain.lotto.MatchingInfo;
 import domain.lotto.prize.Prizeable;
 import java.util.List;
-import java.util.Set;
 
 public interface LottoPrizeable {
 
-    void setPrizeInfo(List<Prizeable> prizeInfos);
+    Prizeable getPrizeInfo(MatchingInfo matchingInfo);
 
-    Prizeable getPrizeInfo(Long matchCount);
-
-    Set<Long> getPrizeMatchCounts();
+    List<Prizeable> getAllPrizeInfo();
 }

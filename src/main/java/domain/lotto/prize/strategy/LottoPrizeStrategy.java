@@ -1,10 +1,8 @@
-package domain.lotto.prize;
+package domain.lotto.prize.strategy;
 
 import domain.lotto.MatchingInfo;
 
-public interface Prizeable {
-
-    Long getPrize();
+public interface LottoPrizeStrategy {
 
     boolean isMatching(MatchingInfo matchingInfo);
 }
