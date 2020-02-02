@@ -8,14 +8,17 @@ import java.util.List;
 
 public class ResultView {
 
-    private final static String NUMBER_OF_TICKETS_MESSAGE = "개를 구매했습니다.";
+    private final static String NUMBER_OF_TICKETS_MESSAGE = "\n수동으로 %d장, 자동으로 %d개를 구매했습니다.";
     private final static String RESULT = "\n당첨 통계\n--------\n";
     private static final String RESULT_FORMAT = "%d개 일치 (%d원)- %d개";
     private static final String RESULT_FORMAT_OF_SECOND_PRIZE = "%d개 일치, 보너스 볼 일치 (%d원)- %d개";
     private static final String YIELD_FORMAT = "총 수익률은 %.1f%% 입니다.";
 
+    public static void printTypeOfTickets(int numberOfManualTickets, int numberOfTickets) {
+        System.out.println(String.format(NUMBER_OF_TICKETS_MESSAGE, numberOfManualTickets, numberOfTickets));
+    }
+
     public static void printTickets(final List<Ticket> tickets) {
-        System.out.println(tickets.size() + NUMBER_OF_TICKETS_MESSAGE);
         tickets.forEach(ticket -> System.out.println(ticket.toString()));
     }
 

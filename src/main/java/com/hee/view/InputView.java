@@ -15,4 +15,14 @@ public class InputView {
         System.out.println(content);
         return SCANNER.nextLine();
     }
+
+    public static String[] inputStringArray(final String content, final int count) {
+        System.out.println(content);
+
+        String[] strings = new String[count];
+        for (int i = 0; i < count; i++) {
+            strings[i] = SCANNER.nextLine();
+        }
+        return strings;
+    }
 }
