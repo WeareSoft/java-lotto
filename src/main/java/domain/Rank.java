@@ -25,12 +25,12 @@ public enum Rank {
 		this.winningMoney = winningMoney;
 	}
 
-	public static Rank valueOf(int countOfMatch) {
+	public static Rank valueOf(int countOfMatch, boolean matchBonus) {
 		if (countOfMatch < WINNING_MIN_COUNT) {
 			return MISS;
 		}
 
-		if (SECOND.matchCount(countOfMatch)) {
+		if (SECOND.matchCount(countOfMatch) && matchBonus) {
 			return SECOND;
 		}
 
@@ -61,6 +61,10 @@ public enum Rank {
 
 	@Override
 	public String toString() {
-		return String.format("%d개 일치 (%,d원)", countOfMatch, winningMoney);
+		String note = "";
+		if (this == Rank.SECOND) {
+			note = ", 보너스볼 일치";
+		}
+		return String.format("%d개 일치%s (%,d원)", countOfMatch, note, winningMoney);
 	}
 }

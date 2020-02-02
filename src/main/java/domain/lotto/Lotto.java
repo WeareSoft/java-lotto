@@ -7,30 +7,22 @@ import java.util.List;
  */
 public class Lotto {
 
-	private static final int PICK_NUM = 6;
+	public static final int PICK_NUM = 6;
 	private List<LottoNumber> lotto;
 
 	public Lotto(List<LottoNumber> lotto) {
+		// 중복 체크
 		if (lotto.size() < PICK_NUM) {
 			throw new IllegalArgumentException();
 		}
 		this.lotto = lotto;
 	}
 
-	public Rank match(Lotto userLotto) {
-		int matchCount = getMatchCount(userLotto);
-		return Rank.valueOf(matchCount);
+	public int getMatchCount(Lotto userLotto) {
+		return (int) lotto.stream().filter(userLotto::contains).count();
 	}
 
-	private int getMatchCount(Lotto userLotto) {
-		int count = 0;
-		for (LottoNumber n : this.lotto) {
-			count += userLotto.contains(n) ? 1 : 0;
-		}
-		return count;
-	}
-
-	private boolean contains(LottoNumber n) {
+	public boolean contains(LottoNumber n) {
 		return lotto.contains(n);
 	}
 
@@ -38,5 +30,4 @@ public class Lotto {
 	public String toString() {
 		return lotto.toString();
 	}
-
 }

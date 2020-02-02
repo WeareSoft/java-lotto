@@ -1,10 +1,14 @@
 import domain.lotto.Lotto;
 import domain.lotto.LottoCollection;
+import domain.lotto.LottoNumber;
+import domain.lotto.WinningLotto;
 import domain.money.Money;
 import domain.provider.LottoSeller;
 import input.InputView;
 import output.OutputView;
 import domain.LottoStatistics;
+
+import java.util.Scanner;
 
 /**
  * @author delf
@@ -15,11 +19,14 @@ public class LottoApplication {
 		LottoSeller lottoSeller = new LottoSeller(lottoPrice);
 
 		Money money = InputView.inputMoney();
-		LottoCollection myLotto = lottoSeller.sellTo(money);
+
+		int manualCount = InputView.getManualCount();
+
+		LottoCollection myLotto = lottoSeller.sellTo(money, manualCount);
 
 		OutputView.printLotto(myLotto);
 
-		Lotto winningLotto = InputView.inputWinningLottoNumber();
+		WinningLotto winningLotto = InputView.inputWinningLottoNumber();
 
 		LottoStatistics lottoStatistics = new LottoStatistics(winningLotto, myLotto, money);
 		OutputView.showWinningStatistics(lottoStatistics);

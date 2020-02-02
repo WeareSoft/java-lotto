@@ -2,6 +2,7 @@ package domain;
 
 import domain.lotto.Lotto;
 import domain.lotto.LottoCollection;
+import domain.lotto.WinningLotto;
 import domain.money.Money;
 
 import java.util.Iterator;
@@ -14,7 +15,7 @@ public class LottoStatistics implements Iterable<Rank> {
 	private Map<Rank, Integer> counter;
 	private Money invest;
 
-	public LottoStatistics(Lotto winningLotto, LottoCollection lottoCollection, Money money) {
+	public LottoStatistics(WinningLotto winningLotto, LottoCollection lottoCollection, Money money) {
 		this.counter = getCounter(winningLotto, lottoCollection);
 		this.invest = money;
 	}
@@ -25,13 +26,10 @@ public class LottoStatistics implements Iterable<Rank> {
 			sum += rank.getProfit(counter.get(rank));
 		}
 
-		System.out.println(invest.getAmount());
 		return (float) sum / invest.getAmount();
 	}
 
-	private final static Rank[] PRINT_ORDER_RANK = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, /*Rank.SECOND, */Rank.FIRST};
-
-	private Map<Rank, Integer> getCounter(Lotto winningLotto, LottoCollection lottoCollection) {
+	private Map<Rank, Integer> getCounter(WinningLotto winningLotto, LottoCollection lottoCollection) {
 		Map<Rank, Integer> counter = Rank.RANK_COUNTER();
 		for (Lotto lotto : lottoCollection) {
 			counter.merge(winningLotto.match(lotto), 1, Integer::sum);
