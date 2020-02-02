@@ -4,7 +4,9 @@ import domain.lotto.Lotto;
 import domain.lotto.LottoCollection;
 import domain.lotto.streragy.LottoAutoGenerateStrategy;
 import domain.lotto.streragy.LottoGenerateStrategy;
+import domain.lotto.streragy.LottoManualGenerateStrategy;
 import domain.money.Money;
+import input.ConsoleInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +22,17 @@ public class LottoSeller {
 		this.lotto = lottoPrice;
 	}
 
-	public LottoCollection sellTo(Money money) {
+	public LottoCollection sellTo(Money money, int manualCount) {
 		int buyLottoSize = getCountOfLotto(money);
-		return generateLottoCollection(new LottoAutoGenerateStrategy(), buyLottoSize);
+		if (manualCount > buyLottoSize) {
+			throw new IllegalArgumentException();
+		}
+
+		LottoCollection lottoCollection = new LottoCollection();
+		lottoCollection.addAll(generateLottoCollection(new LottoManualGenerateStrategy(new ConsoleInput()), manualCount));
+		lottoCollection.addAll(generateLottoCollection(new LottoAutoGenerateStrategy(), buyLottoSize - manualCount));
+
+		return lottoCollection;
 	}
 
 	private int getCountOfLotto(Money money) {
@@ -34,6 +44,7 @@ public class LottoSeller {
 		for (int i = 0; i < size; i++) {
 			lottoList.add(strategy.generateLotto());
 		}
+
 		return new LottoCollection(lottoList);
 	}
 }

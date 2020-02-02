@@ -28,6 +28,13 @@ public class InputView {
 		return winningLottoMock();
 	}
 
+	public static int getManualCount() {
+		System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+		final int count = 3;
+		System.out.println(count);
+		return count; // 임시
+	}
+
 	private static WinningLotto winningLottoMock() {
 		System.out.println(winningGuideText);
 		Lotto lotto = new Lotto(Arrays.asList(LottoNumber.of(1), LottoNumber.of(2), LottoNumber.of(3), LottoNumber.of(4), LottoNumber.of(5), LottoNumber.of(6)));

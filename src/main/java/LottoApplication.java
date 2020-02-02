@@ -8,6 +8,8 @@ import input.InputView;
 import output.OutputView;
 import domain.LottoStatistics;
 
+import java.util.Scanner;
+
 /**
  * @author delf
  */
@@ -18,7 +20,9 @@ public class LottoApplication {
 
 		Money money = InputView.inputMoney();
 
-		LottoCollection myLotto = lottoSeller.sellTo(money);
+		int manualCount = InputView.getManualCount();
+
+		LottoCollection myLotto = lottoSeller.sellTo(money, manualCount);
 
 		OutputView.printLotto(myLotto);
 

@@ -11,6 +11,7 @@ public class Lotto {
 	private List<LottoNumber> lotto;
 
 	public Lotto(List<LottoNumber> lotto) {
+		// 중복 체크
 		if (lotto.size() < PICK_NUM) {
 			throw new IllegalArgumentException();
 		}
